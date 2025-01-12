@@ -39,7 +39,7 @@ def run(fn_on_rev_msg):
                     break
                 index = index + 1
             if index == 0 or index == len(text):
-                send_message_to_lark(constant.ERROR_CMD_FORMAT)
+                send_message_to_lark(constant.ERROR_CMD_FORMAT + constant.WHITE_SPACE + text)
                 return
             fn_on_rev_msg(text[:index], text[index + 1:])
         else:
