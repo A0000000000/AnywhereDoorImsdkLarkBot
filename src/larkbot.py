@@ -12,7 +12,7 @@ def send_message_to_lark(msg: str) -> None:
                     .builder()
                     .receive_id(open_id)
                     .msg_type('text')
-                    .content('{"text": "{}"}'.format(msg))
+                    .content('{"text": "%s"}' % msg)
                     .build())
     request = (CreateMessageRequest
                .builder()
