@@ -6,13 +6,17 @@ import constant
 
 
 def send_message_to_lark(msg: str) -> None:
+    send_data = json.dumps({
+        'text': msg
+    })
+    print('send msg to lark: ', send_data)
     open_id = os.getenv(constant.ENV_OPEN_ID)
     client = lark.Client.builder().app_id(lark.APP_ID).app_secret(lark.APP_SECRET).build()
     request_body = (CreateMessageRequestBody
                     .builder()
                     .receive_id(open_id)
                     .msg_type('text')
-                    .content('{"text": "%s"}' % msg)
+                    .content(send_data)
                     .build())
     request = (CreateMessageRequest
                .builder()
