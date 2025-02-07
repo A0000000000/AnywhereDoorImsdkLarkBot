@@ -6,7 +6,6 @@ ENV_USERNAME = 'USERNAME'
 ENV_TOKEN = 'TOKEN'
 ENV_IMSDK_NAME = 'IMSDK_NAME'
 
-CONFIG_ADMIN_NICKNAME = 'admin_nickname'
 CONFIG_SEND_METHOD = 'fn_send_request'
 CONFIG_URL = 'url'
 CONFIG_TOKEN = 'token'
@@ -16,14 +15,12 @@ CONFIG_HOST = 'host'
 CONFIG_PORT = 'port'
 
 ERROR_CMD_FORMAT = '命令格式错误。'
-ERROR_INIT = '服务初始化错误。'
 
 TEMPLATE_URL = 'http://%s:%s%s/imsdk'
 
 FLASK_APP_NAME = 'anywhere_door_imsdk_wxbot'
 FLASK_STATIC_FOLDER = './'
 FLASK_URL_IMSDK = '/imsdk'
-FLASK_URL_LOGIN = '/login'
 FLASK_HOST = '0.0.0.0'
 FLASK_PORT = 80
 
