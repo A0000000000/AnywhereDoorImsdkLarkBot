@@ -7,16 +7,12 @@ from threading import Thread
 import constant
 
 
-def empty_send_method(data):
-    print(data)
-
-
 server_config = {
-    constant.CONFIG_URL: '',
-    constant.CONFIG_TOKEN: '',
-    constant.CONFIG_IMSDK_NAME: '',
-    constant.CONFIG_USERNAME: '',
-    constant.CONFIG_SEND_METHOD: empty_send_method
+    constant.CONFIG_URL: constant.EMPTY_STR,
+    constant.CONFIG_TOKEN: constant.EMPTY_STR,
+    constant.CONFIG_IMSDK_NAME: constant.EMPTY_STR,
+    constant.CONFIG_USERNAME: constant.EMPTY_STR,
+    constant.CONFIG_SEND_METHOD: None
 }
 
 
@@ -26,7 +22,7 @@ def init_http_server(fn_send_msg_to_admin):
     prefix = os.getenv(constant.ENV_PREFIX)
     username = os.getenv(constant.ENV_USERNAME)
     if prefix is None:
-        prefix = ''
+        prefix = constant.EMPTY_STR
     url = constant.TEMPLATE_URL % (host, port, prefix)
     token = os.getenv(constant.ENV_TOKEN)
     imsdk_name = os.getenv(constant.ENV_IMSDK_NAME)
@@ -35,9 +31,7 @@ def init_http_server(fn_send_msg_to_admin):
     server_config[constant.CONFIG_IMSDK_NAME] = imsdk_name
     server_config[constant.CONFIG_USERNAME] = username
     server_config[constant.CONFIG_SEND_METHOD] = fn_send_msg_to_admin
-
     app = Flask(constant.FLASK_APP_NAME, static_folder=constant.FLASK_STATIC_FOLDER)
-
     @app.post(constant.FLASK_URL_IMSDK)
     def on_request():
         _token = request.headers.get(constant.PARAMS_TOKEN)
@@ -67,7 +61,6 @@ def init_http_server(fn_send_msg_to_admin):
             constant.PARAMS_MESSAGE: constant.ERROR_MESSAGE_SUCCESS
         }
         return json.dumps(resp)
-
     Thread(target=app.run,
            kwargs={
                constant.CONFIG_HOST: constant.FLASK_HOST,
@@ -86,7 +79,6 @@ def send_request(target, data):
         constant.PARAMS_USERNAME: server_config[constant.CONFIG_USERNAME]
     })
     resp = json.loads(res.text)
-    if resp[constant.PARAMS_CODE] != constant.ERROR_CODE_SUCCESS:
+    if (resp[constant.PARAMS_CODE] != constant.ERROR_CODE_SUCCESS
+            and server_config[constant.CONFIG_SEND_METHOD] is not None):
         server_config[constant.CONFIG_SEND_METHOD](resp[constant.PARAMS_MESSAGE])
-
-    print(res.text)

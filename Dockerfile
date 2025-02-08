@@ -9,12 +9,12 @@ WORKDIR /ws
 
 RUN apt update
 RUN apt install -y python3-full python3-pip
-
-COPY src /ws/src
 COPY requirements.txt /ws
 
 RUN python3 -m venv larkbot
 RUN source /ws/larkbot/bin/activate && pip3 install -r requirements.txt
+
+COPY src /ws/src
 
 EXPOSE 80
 
