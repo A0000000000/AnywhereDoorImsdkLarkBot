@@ -8,6 +8,7 @@ ENV_IMSDK_NAME = 'IMSDK_NAME'
 
 CONFIG_SEND_METHOD = 'fn_send_request'
 CONFIG_URL = 'url'
+CONFIG_LOG_URL = 'log_url'
 CONFIG_TOKEN = 'token'
 CONFIG_IMSDK_NAME = 'imsdk_name'
 CONFIG_USERNAME = 'username'
@@ -17,6 +18,7 @@ CONFIG_PORT = 'port'
 ERROR_CMD_FORMAT = '命令格式错误。'
 
 TEMPLATE_URL = 'http://%s:%s%s/imsdk'
+TEMPLATE_LOG_URL = 'http://%s:%s%s/imsdk/log'
 
 FLASK_APP_NAME = 'anywhere_door_imsdk_wxbot'
 FLASK_STATIC_FOLDER = './'
@@ -31,6 +33,10 @@ PARAMS_DATA = 'data'
 PARAMS_CODE = 'code'
 PARAMS_MESSAGE = 'message'
 PARAMS_USERNAME = 'username'
+PARAMS_TIMESTAMP = 'timestamp'
+PARAMS_LEVEL = 'level'
+PARAMS_TAG = 'tag'
+PARAMS_LOG = 'log'
 
 ERROR_CODE_SUCCESS = 0
 ERROR_CODE_INVALID_TOKEN = -1
@@ -48,3 +54,8 @@ FROM = 'from'
 WHITE_SPACE = ' '
 NEWLINE = '\n'
 COLON = ':'
+
+LOG_LEVEL_DEBUG = 1
+LOG_LEVEL_INFO = 2
+LOG_LEVEL_WARN = 3
+LOG_LEVEL_ERROR = 4

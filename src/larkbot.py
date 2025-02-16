@@ -26,7 +26,7 @@ def send_message_to_lark(msg: str) -> None:
     client.im.v1.message.create(request)
 
 
-def run(fn_on_rev_msg):
+def run(log_ctx, fn_on_rev_msg):
     def do_p2_im_message_receive_v1(data: P2ImMessageReceiveV1) -> None:
         if data.event.message.message_type == constant.TEXT:
             text = json.loads(data.event.message.content)[constant.TEXT]

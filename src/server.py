@@ -16,7 +16,7 @@ server_config = {
 }
 
 
-def init_http_server(fn_send_msg_to_admin):
+def init_http_server(log_ctx, fn_send_msg_to_admin):
     host = os.getenv(constant.ENV_HOST)
     port = os.getenv(constant.ENV_PORT)
     prefix = os.getenv(constant.ENV_PREFIX)
@@ -32,6 +32,7 @@ def init_http_server(fn_send_msg_to_admin):
     server_config[constant.CONFIG_USERNAME] = username
     server_config[constant.CONFIG_SEND_METHOD] = fn_send_msg_to_admin
     app = Flask(constant.FLASK_APP_NAME, static_folder=constant.FLASK_STATIC_FOLDER)
+
     @app.post(constant.FLASK_URL_IMSDK)
     def on_request():
         _token = request.headers.get(constant.PARAMS_TOKEN)
@@ -61,6 +62,7 @@ def init_http_server(fn_send_msg_to_admin):
             constant.PARAMS_MESSAGE: constant.ERROR_MESSAGE_SUCCESS
         }
         return json.dumps(resp)
+
     Thread(target=app.run,
            kwargs={
                constant.CONFIG_HOST: constant.FLASK_HOST,
