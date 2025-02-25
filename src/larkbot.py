@@ -1,4 +1,6 @@
 import os
+import re
+
 import lark_oapi as lark
 from lark_oapi.api.im.v1 import *
 import json
@@ -30,6 +32,8 @@ def run(log_ctx, fn_on_rev_msg):
     def do_p2_im_message_receive_v1(data: P2ImMessageReceiveV1) -> None:
         if data.event.message.message_type == constant.TEXT:
             text = json.loads(data.event.message.content)[constant.TEXT]
+            markdown_link_regex = r'\[([^\]]+)\]\(([^)]+)\)'
+            text = re.sub(markdown_link_regex, r'\1', text)
             index = 0
             while index < len(text):
                 if text[index] == constant.WHITE_SPACE:

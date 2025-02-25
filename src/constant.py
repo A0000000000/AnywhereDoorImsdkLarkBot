@@ -20,7 +20,7 @@ ERROR_CMD_FORMAT = '命令格式错误。'
 TEMPLATE_URL = 'http://%s:%s%s/imsdk'
 TEMPLATE_LOG_URL = 'http://%s:%s%s/imsdk/log'
 
-FLASK_APP_NAME = 'anywhere_door_imsdk_wxbot'
+FLASK_APP_NAME = 'anywhere_door_imsdk_larkbot'
 FLASK_STATIC_FOLDER = './'
 FLASK_URL_IMSDK = '/imsdk'
 FLASK_HOST = '0.0.0.0'
