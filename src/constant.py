@@ -5,6 +5,8 @@ ENV_PREFIX = 'PREFIX'
 ENV_USERNAME = 'USERNAME'
 ENV_TOKEN = 'TOKEN'
 ENV_IMSDK_NAME = 'IMSDK_NAME'
+ENV_SELF_HOST = 'SELF_HOST'
+ENV_SELF_PREFIX = 'SELF_PREFIX'
 
 CONFIG_SEND_METHOD = 'fn_send_request'
 CONFIG_URL = 'url'
@@ -19,6 +21,7 @@ ERROR_CMD_FORMAT = '命令格式错误。'
 
 TEMPLATE_URL = 'http://%s:%s%s/imsdk'
 TEMPLATE_LOG_URL = 'http://%s:%s%s/imsdk/log'
+TEMPLATE_REGISTER_URL = 'http://%s:%s%s/imsdk/register'
 
 FLASK_APP_NAME = 'anywhere_door_imsdk_larkbot'
 FLASK_STATIC_FOLDER = './'
@@ -37,6 +40,9 @@ PARAMS_TIMESTAMP = 'timestamp'
 PARAMS_LEVEL = 'level'
 PARAMS_TAG = 'tag'
 PARAMS_LOG = 'log'
+PARAMS_HOST = 'host'
+PARAMS_PORT = 'port'
+PARAMS_PREFIX = 'prefix'
 
 ERROR_CODE_SUCCESS = 0
 ERROR_CODE_INVALID_TOKEN = -1
